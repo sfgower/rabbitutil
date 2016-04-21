@@ -24,6 +24,7 @@
         </plugins>
     </build>
     <url>http://maven.apache.org</url>
+   <! --  dependencies -->
     <dependencies>
         <dependency>
             <groupId>org.apache.activemq</groupId>
