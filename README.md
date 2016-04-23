@@ -75,6 +75,9 @@ to and from other queues as well.
 This code was developed on Mac OSX and compiled and run under Java 1.8.
 I would expect, however, that it would run on under operating systems and under Java 1.7 as well.
 
+Note that a rabbitutil.jar file is available here at under the /target directory.
+So if you don't want to deal with source, just use the jar.
+
 Here are a few notes and caveats:
 
    This early version of RabbitUtil is limited in functionality. For example, it doesn't support
@@ -94,7 +97,7 @@ Here are a few notes and caveats:
    but right now it seems ok as is. Your opinion may vary.
 
    At present, the init(..) method on BaseConsumer doesn't include the Channel object.
-   Perhaps it should, but I don't have a use case for this. 
+   Perhaps it should, but I don't have a use case for this.
 
 
  Any comments, especially for any problems in the code, or improvements, would be appreciated.
