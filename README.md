@@ -27,7 +27,7 @@ can now be spun up with trivial effort, and the code size is very small.
 Here is a snippet of code to spin up a receiver based on an EchoConsumer.
 
 
-...
+
         Receiver receiver = ReceiverFactory.createReceiver(
                 "localhost",
                 5672, TEST_QUEUE_NAME, EchoConsumer.class, consumerConfiguration);
@@ -35,12 +35,11 @@ Here is a snippet of code to spin up a receiver based on an EchoConsumer.
         Thread t = new Thread(receiver);
         t.start();
 
-...
 
 Here is the code for the EchoConsumer. Note that the EchoConsumer extends from BaseConsumer.
 
 
-public  class EchoConsumer extends BaseConsumer implements Consumer {
+    public  class EchoConsumer extends BaseConsumer implements Consumer {
 
 
         public EchoConsumer(Channel channel, ConsumerConfiguration consumerConfiguration)
@@ -68,8 +67,8 @@ public  class EchoConsumer extends BaseConsumer implements Consumer {
 
 A sender can then be created...
 
-   Sender sender = SenderFactory.createSender(HOST, PORT, TEST_QUEUE_NAME);
-   sender.send("Please echo this message");
+     Sender sender = SenderFactory.createSender(HOST, PORT, TEST_QUEUE_NAME);
+     sender.send("Please echo this message");
 
 Of course, receivers can instantiate their own senders, and so send messages
 to and from other queues as well.
