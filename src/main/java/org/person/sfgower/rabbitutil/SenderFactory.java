@@ -27,7 +27,7 @@ public class SenderFactory {
     public static Sender createSender(String host, int port, String queueName)
             throws Exception
     {
-        return new SenderImpl(host,port,queueName);
+        return new SenderImpl(host,port,queueName).init();
 
     }
 }

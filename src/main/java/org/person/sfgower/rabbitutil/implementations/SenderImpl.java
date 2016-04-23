@@ -35,7 +35,7 @@ public class SenderImpl implements Sender {
 
     }
 
-    public void init()
+    public SenderImpl init()
             throws Exception
     {
 
@@ -43,6 +43,7 @@ public class SenderImpl implements Sender {
         channel = connection.createChannel();
 
         channel.queueDeclare(queueName, true, false, false, null);
+        return this;
 
 
     }
