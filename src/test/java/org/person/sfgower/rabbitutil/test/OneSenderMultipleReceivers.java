@@ -40,7 +40,7 @@ public class OneSenderMultipleReceivers {
      * Note that while the consumers here do not send messages back via a queue,
      * they easily could, and typically would in real usage. That is, a receiver
      * can instantiate receivers and then send messages back via those receivers.
-     * 
+     *
      * While not supported presently, the intent is to add a QueueConfiguration parameter
      * to the ReceiverFactory.createReceiver() method, so that the actual queue itself
      * can be configured through the factory method.
