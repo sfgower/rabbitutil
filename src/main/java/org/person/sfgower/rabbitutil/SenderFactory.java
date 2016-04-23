@@ -24,11 +24,10 @@ public class SenderFactory {
      * @throws Exception
      */
 
-    public static Sender createQueueProducer(String host, int port, String queueName)
+    public static Sender createSender(String host, int port, String queueName)
             throws Exception
     {
-        SenderImpl queueProducer = new SenderImpl(host,port,queueName);
-        queueProducer.init();
-        return queueProducer;
+        return new SenderImpl(host,port,queueName);
+
     }
 }

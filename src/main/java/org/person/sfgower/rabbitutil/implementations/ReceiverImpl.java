@@ -10,6 +10,7 @@ package org.person.sfgower.rabbitutil.implementations;
 import com.rabbitmq.client.Channel;
 import com.rabbitmq.client.Connection;
 import com.rabbitmq.client.Consumer;
+import org.person.sfgower.rabbitutil.BaseConsumer;
 import org.person.sfgower.rabbitutil.ConsumerConfiguration;
 import org.person.sfgower.rabbitutil.PerProcessConnectionFactory;
 import org.person.sfgower.rabbitutil.Receiver;
@@ -120,7 +121,7 @@ public class ReceiverImpl implements Receiver {
 
         }
 
-
+        ((BaseConsumer)consumer).init(consumerConfiguration);
 
     }
 

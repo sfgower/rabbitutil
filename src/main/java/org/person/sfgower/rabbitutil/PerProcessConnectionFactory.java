@@ -20,6 +20,10 @@ import java.util.Set;
  */
 public class PerProcessConnectionFactory {
 
+    // todo: Note the assumption here is that all consumers and receivers
+    // will use a single RabbitMQ connection. If this assumption proves false,
+    // this code could be adjusted to allow for connections to RabbitMQ connections.
+
     private static Connection connection = null;
     private static Set<Endpoint> endpoints = new HashSet<>();
 

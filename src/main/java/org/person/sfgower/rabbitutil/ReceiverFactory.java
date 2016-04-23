@@ -22,11 +22,11 @@ public class ReceiverFactory  {
      * @throws Exception
      */
 
-    public static Receiver createQueueConsumer(String host,
-                                               int port,
-                                               String queueName,
-                                               Class consumerClass,
-                                               ConsumerConfiguration consumerConfiguration)
+    public static Receiver createReceiver(String host,
+                                          int port,
+                                          String queueName,
+                                          Class consumerClass,
+                                          ConsumerConfiguration consumerConfiguration)
             throws Exception
     {
 

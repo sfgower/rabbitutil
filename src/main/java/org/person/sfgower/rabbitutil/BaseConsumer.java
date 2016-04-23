@@ -26,9 +26,7 @@ public abstract class BaseConsumer extends DefaultConsumer implements Consumer {
 
     }
 
-    protected void init(ConsumerConfiguration consumerConfiguration)
-    {
+    public abstract void init(ConsumerConfiguration consumerConfiguration);
 
-    }
 
 }
