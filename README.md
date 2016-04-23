@@ -17,9 +17,9 @@ and a configuraiton, and it would return a Receiver, all ready to be spun up in 
 The trivial challenge here is that the RabbitMQ code requires that a Channel object be used to instantiate a consumer.
 So to get pass this, a tiny bit of Java reflection is used to construct the Consumer
 with both this Channel object and the ConsumerConfiguration object be passed as inputs
-into the constructor. The init(..) method
-of the consumer class - extending from BaseConsumer - then initializes the consumer using information
-from the consumer configuration object.
+into the constructor. The init(..) method of the consumer class - extending from BaseConsumer - then initializes the consumer using information
+from the consumer configuration object. The programmer that defines a consumer class is responsible
+for defining the init(ConsumerConfiguration) method; this method will then initialize the consumer object.
 
 While the code is pretty trivial, it is still quite useful. Now receivers, with their worker bees (consumers)
 can now be spun up with trivial effort, and the code size is very small.
@@ -92,6 +92,9 @@ Here are a few notes and caveats:
 
    The need to extend consumer subclasses from BaseConsumer could be easily lifted,
    but right now it seems ok as is. Your opinion may vary.
+
+   At present, the init(..) method on BaseConsumer doesn't include the Channel object.
+   Perhaps it should, but I don't have a use case for this. 
 
 
  Any comments, especially for any problems in the code, or improvements, would be appreciated.
