@@ -13,10 +13,12 @@ import com.rabbitmq.client.Connection;
 import com.rabbitmq.client.MessageProperties;
 import org.person.sfgower.rabbitutil.PerProcessConnectionFactory;
 import org.person.sfgower.rabbitutil.Sender;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 public class SenderImpl implements Sender {
 
-
+    private  Logger logger = LoggerFactory.getLogger(SenderImpl.class);
     //public static final int DEFAULT_PORT = 5672;
 
 
@@ -51,6 +53,7 @@ public class SenderImpl implements Sender {
     @Override
     public void send(String message) throws Exception {
 
+        logger.info("Sending message>> queueName: " + queueName + ", message:" + message);
         channel.basicPublish("", queueName,
                 MessageProperties.PERSISTENT_TEXT_PLAIN,
                 message.getBytes("UTF-8"));

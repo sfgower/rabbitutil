@@ -14,13 +14,15 @@ import org.person.sfgower.rabbitutil.BaseConsumer;
 import org.person.sfgower.rabbitutil.ConsumerConfiguration;
 import org.person.sfgower.rabbitutil.PerProcessConnectionFactory;
 import org.person.sfgower.rabbitutil.Receiver;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.lang.reflect.Constructor;
 
 public class ReceiverImpl implements Receiver {
 
 
-
+    private  Logger logger = LoggerFactory.getLogger(ReceiverImpl.class);
     public static final String DEFAULT_HOST = "localhost";
     public static final int DEFAULT_PORT = 5672;
 
@@ -54,20 +56,20 @@ public class ReceiverImpl implements Receiver {
     @Override
     public void run()
     {
-     boolean done = false;
-     System.out.println("Starting instantiation...");
+     logger.info("Starting instantiation of consumer for consumer class: " +
+     consumerClass.getName());
      try {
          instantiateMe();
-         done = true;
-         System.out.println("Instantation done!");
+         logger.info("Instantation of consumer done!");
      }
      catch (Exception any)
      {
+      logger.info(any.toString());
       any.printStackTrace();
      }
      finally
      {
-      System.out.println("done? ==? " + done);
+      // left intentionally blank
      }
 
 
@@ -117,7 +119,7 @@ public class ReceiverImpl implements Receiver {
         consumer = instantiateConsumer(consumerClass,channel,consumerConfiguration);
         if (consumer != null) {
             channel.basicConsume(queueName, true, consumer);
-            System.out.println(" [*] Waiting for messages. To exit press CTRL+C");
+            logger.info(" [*] Waiting for messages for consumer " + consumerClass.getName());
 
         }
 

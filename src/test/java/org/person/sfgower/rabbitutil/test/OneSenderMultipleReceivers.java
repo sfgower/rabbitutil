@@ -9,6 +9,8 @@ import com.rabbitmq.client.Channel;
 import com.rabbitmq.client.Consumer;
 import com.rabbitmq.client.Envelope;
 import org.person.sfgower.rabbitutil.*;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.io.IOException;
 import java.util.HashSet;
@@ -24,13 +26,21 @@ import static org.junit.Assert.assertTrue;
  *
  */
 
-public class BasicTest {
+public class OneSenderMultipleReceivers {
 
+    private Logger logger = LoggerFactory.getLogger(OneSenderMultipleReceivers.class);
     /**
      * Create senders and receivers using a simple API.
      * A ReceiverFactory is used to generate receivers based on a consumer and
      * a configuration.
      *
+     * Here a receiver sends messages to a queue, and then two receivers pick up the
+     * messages.
+     *
+     * Note that while the consumers here do not send messages back via a queue,
+     * they easily could, and typically would in real usage. That is, a receiver
+     * can instantiate receivers and then send messages back via those receivers.
+     * 
      * While not supported presently, the intent is to add a QueueConfiguration parameter
      * to the ReceiverFactory.createReceiver() method, so that the actual queue itself
      * can be configured through the factory method.
@@ -89,11 +99,15 @@ public class BasicTest {
             sent.remove(word);
 
         assertTrue(sent.isEmpty());
+        logger.info("Have confirmed that all the messages sent to the consumer have been received.");
+
 
     }
 
 
     public static class EchoConsumer extends BaseConsumer implements Consumer {
+
+        private Logger logger = LoggerFactory.getLogger(EchoConsumer.class);
 
         public static final String EMPTY_STRING ="";
 
@@ -108,7 +122,9 @@ public class BasicTest {
         @Override
         public void handleDelivery(String s, Envelope envelope, AMQP.BasicProperties basicProperties, byte[] bytes) throws IOException {
 
+
             String word = new String(bytes).toString();
+            logger.info("Echo consumer has received message: " + word);
             result.add(word);
 
 
