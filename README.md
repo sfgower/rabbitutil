@@ -30,11 +30,10 @@ Here is a snippet of code to spin up a receiver based on an EchoConsumer.
 
         Receiver receiver = ReceiverFactory.createReceiver(
                 "localhost",
-                5672, TEST_QUEUE_NAME, EchoConsumer.class, consumerConfiguration);
+                5672, "echo-queue", EchoConsumer.class, consumerConfiguration);
 
         Thread t = new Thread(receiver);
         t.start();
-
 
 Here is the code for the EchoConsumer. Note that the EchoConsumer extends from BaseConsumer.
 
@@ -67,7 +66,7 @@ Here is the code for the EchoConsumer. Note that the EchoConsumer extends from B
 
 A sender can then be created...
 
-     Sender sender = SenderFactory.createSender(HOST, PORT, TEST_QUEUE_NAME);
+     Sender sender = SenderFactory.createSender("localhost", 5672, "echo-queue");
      sender.send("Please echo this message");
 
 Of course, receivers can instantiate their own senders, and so send messages
