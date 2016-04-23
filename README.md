@@ -78,18 +78,22 @@ I would expect, however, that it would run on under operating systems and under 
 
 Here are a few notes and caveats:
 
-   Note: this early version of RabbitUtil is limited in functionality. For example, it doesn't support
+   This early version of RabbitUtil is limited in functionality. For example, it doesn't support
    custom configuration of a queue *yet* but that is planned. Instead, all queues created are
    created in the same manner at present. So in some future version, when a ReceiverFactory can
    receiver a QueueConfiguration argument, that queue configuration would determine how the
    queue is configured and, possibly, other behaviors of the receiver.
 
-   Note: this code assumes that all endpoints use the same RabbitMQ instance.
+   This code assumes that all endpoints use the same RabbitMQ instance.
    This assumption could be lifted, but today it is a restriction.
 
-   Note: in an environment where the RabbitMQ instance is remote, it is possible
+   In an environment where the RabbitMQ instance is remote, it is possible
    that this code will have to slightly changed. I developed this using a local RAbbitMQ
-   server.
+   server, and have not yet tested it with a remote RabbitMQ sever or cluster.
+
+   The need to extend consumer subclasses from BaseConsumer could be easily lifted,
+   but right now it seems ok as is. Your opinion may vary.
+
 
  Any comments, especially for any problems in the code, or improvements, would be appreciated.
 
