@@ -99,12 +99,8 @@ Now Maven will user this system path to acquire the binaries of the rabbitutil.j
 
 I will be adding more unit tests!
 
-Bugs:-
-
-  -- calling getConsumer() on a Receiver is not retrieving a consumer object.
-     This is a bad bug because in unit testing it is very convenitent
-     to able to access a consumer object directly.
- 
+I also need to deal with some thread-safety issues in a few places.
+For example, there is getConsumer() method that is not thread-safe. 
 
  
 Here are a few notes and caveats:

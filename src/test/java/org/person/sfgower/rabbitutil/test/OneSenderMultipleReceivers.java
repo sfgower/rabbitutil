@@ -64,6 +64,8 @@ public class OneSenderMultipleReceivers {
                 "localhost",
                 5672, TEST_QUEUE_NAME, EchoConsumer.class, consumerConfiguration);
 
+
+
         Receiver receiver2 = ReceiverFactory.createReceiver(
                 "localhost",
                 5672, TEST_QUEUE_NAME, EchoConsumer.class, consumerConfiguration);
@@ -85,6 +87,10 @@ public class OneSenderMultipleReceivers {
             sent.add(word);
         }
         Thread.sleep(5000);
+
+        // Need to check for the consumer *after* the receive has been instantiated..
+        assertNotNull(receiver.getConsumer());
+
 
         EchoConsumer consumer = (EchoConsumer)receiver.getConsumer();
         Set<String> result =  consumer.getResults();

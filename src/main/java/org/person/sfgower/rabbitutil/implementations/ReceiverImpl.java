@@ -110,6 +110,7 @@ public class ReceiverImpl implements Receiver {
             throws Exception
     {
 
+        logger.info("About to instantiate channel and consumer.");
         connection = PerProcessConnectionFactory.getConnection(this,host,port);
         Channel channel = connection.createChannel();
 
@@ -124,12 +125,13 @@ public class ReceiverImpl implements Receiver {
         }
 
         ((BaseConsumer)consumer).init(consumerConfiguration);
+        logger.info("Have created and instantiated consumer: " + consumer.toString());
 
     }
 
 
 
-    public static Consumer instantiateConsumer(Class consumerClass, Channel channel, ConsumerConfiguration consumerConfiguration)
+    public  Consumer instantiateConsumer(Class consumerClass, Channel channel, ConsumerConfiguration consumerConfiguration)
     {
         try {
             Constructor c = consumerClass.getConstructor(new Class[]{Channel.class,ConsumerConfiguration.class});
@@ -138,6 +140,7 @@ public class ReceiverImpl implements Receiver {
         }
         catch (Exception nsme)
         {
+            logger.info("Error during instantiation of consumer: " + nsme.toString());
             nsme.printStackTrace();
             return null;
         }
