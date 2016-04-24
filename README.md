@@ -78,6 +78,35 @@ I would expect, however, that it would run on under operating systems and under 
 Note that a rabbitutil.jar file is available here at under the /target directory.
 So if you don't want to deal with source, just use the jar.
 
+Alternatively, if you are using maven, you can use the rabbitutil.jar as follows.
+Create a directory from your base directory, such as /libs.
+
+Then use wget to download the rabbitutil.jar.
+
+wget https://raw.github.com/sfgower/rabbitutil/master/target/rabbitutil.jar
+
+Download this is the appropriate ../libs directory.
+
+     <dependency>
+            <groupId>rabbitutil</groupId>
+            <artifactId>rabbituil.0.1</artifactId>
+            <scope>system</scope>
+            <version>0.1</version>
+            <systemPath>${basedir}/libs/rabbitutil.jar</systemPath>
+        </dependency>
+
+Now Maven will user this system path to acquire the binaries of the rabbitutil.jar.
+
+I will be adding more unit tests!
+
+Bugs:-
+
+  -- calling getConsumer() on a Receiver is not retrieving a consumer object.
+     This is a bad bug because in unit testing it is very convenitent
+     to able to access a consumer object directly.
+ 
+
+ 
 Here are a few notes and caveats:
 
    This early version of RabbitUtil is limited in functionality. For example, it doesn't support
